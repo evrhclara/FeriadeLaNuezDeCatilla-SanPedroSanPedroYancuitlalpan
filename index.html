@@ -139,7 +139,7 @@
 
         /* ================= SECCIÓN GALERÍA (CARRUSEL) ================= */
         .section-galeria {
-            background-color: #021a04; /* Tono verde oscuro de transición */
+            background-color: #021a04;
             padding: 60px 0;
             width: 100vw;
             display: flex;
@@ -154,7 +154,6 @@
             text-align: center;
         }
 
-        /* Contenedor deslizante del carrusel */
         .carousel-wrapper {
             width: 100%;
             max-width: 1200px;
@@ -169,10 +168,8 @@
             scroll-snap-type: x mandatory;
             scroll-behavior: smooth;
             padding-bottom: 15px;
-            -webkit-overflow-scrolling: touch;
         }
 
-        /* Ocultar barra de scroll en navegadores */
         .carousel-track::-webkit-scrollbar {
             height: 8px;
         }
@@ -185,7 +182,7 @@
         }
 
         .carousel-item {
-            flex: 0 0 calc(33.333% - 14px); /* Muestra 3 imágenes a la vez en pantallas grandes */
+            flex: 0 0 calc(33.333% - 14px);
             scroll-snap-align: start;
             aspect-ratio: 4 / 3;
             border-radius: 6px;
@@ -227,6 +224,47 @@
         }
 
 
+        /* ================= SECCIÓN NUEVA: MULTIMEDIA (VIDEOS + IMAGEN) ================= */
+        .section-multimedia {
+            background-color: #051802; /* Variación sutil de verde oscuro */
+            padding: 80px 0;
+        }
+
+        .grid-multimedia {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr 1fr; /* Le da un poco más de peso visual a la foto del centro */
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .media-box {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+        }
+
+        /* Ajustes específicos para los iframes de Facebook Reels */
+        .media-box iframe {
+            max-width: 100%;
+            display: block;
+            background: #000;
+        }
+
+        /* Ajuste para la imagen central */
+        .media-img-center {
+            width: 100%;
+            height: 100%;
+            max-height: 591px; /* Iguala la altura máxima de los videos */
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+
         /* ================= SECCIÓN 4 (Cierre con imagen3.png) ================= */
         .section-cierre {
             background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('imagen3.png') center/cover no-repeat;
@@ -245,7 +283,14 @@
         /* Adaptabilidad para pantallas móviles y tablets */
         @media (max-width: 992px) {
             .carousel-item {
-                flex: 0 0 calc(50% - 10px); /* 2 imágenes a la vez en tablets */
+                flex: 0 0 calc(50% - 10px);
+            }
+            .grid-multimedia {
+                grid-template-columns: 1fr; /* En pantallas pequeñas se apilan verticalmente */
+                gap: 40px;
+            }
+            .media-img-center {
+                max-height: 450px;
             }
         }
 
@@ -257,7 +302,7 @@
             }
             .text-ubicacion { text-align: center; }
             .carousel-item {
-                flex: 0 0 85%; /* 1 imagen parcial en móviles para invitar a deslizar */
+                flex: 0 0 85%;
             }
             .section-cuando p { font-size: 2.8rem; }
             .section-cierre p { font-size: 1.8rem; }
@@ -266,7 +311,7 @@
 </head>
 <body>
 
-    <!-- SECCIÓN 1: CABECERA CON IMAGEN 1 DE FONDO -->
+    <!-- SECCIÓN 1: CABECERA -->
     <section class="section-hero">
         <div class="section-content">
             <h1 class="serif-font">XX Feria de la<br>Nuez de Castilla y el Chile en Nogada</h1>
@@ -274,7 +319,7 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 2: UBICACIÓN CON IMAGEN 2 DE FONDO -->
+    <!-- SECCIÓN 2: UBICACIÓN -->
     <section class="section-ubicacion">
         <div class="section-content">
             <h2 class="sans-font">UBICACIÓN</h2>
@@ -295,7 +340,7 @@
         </div>
     </section>
 
-    <!-- NUEVA SECCIÓN: CARRUSEL DE GALERÍA (DEBAJO DE UBICACIÓN) -->
+    <!-- SECCIÓN: CARRUSEL DE GALERÍA -->
     <section class="section-galeria">
         <h2 class="sans-font">Galería del Evento</h2>
         <div class="carousel-wrapper">
@@ -314,11 +359,35 @@
         </div>
     </section>
 
-    <!-- SECCIÓN 3: ¿CUÁNDO? (VERDE PINO SÓLIDO) -->
+    <!-- SECCIÓN 3: ¿CUÁNDO? -->
     <section class="section-cuando">
         <div class="section-content">
             <h2 class="sans-font">¿CUÁNDO?</h2>
             <p class="serif-font">Todos los fines de semana de agosto 2026</p>
+        </div>
+    </section>
+
+    <!-- SECCIÓN NUEVA: MULTIMEDIA (VIDEOS + IMAGEN CENTRAL) -->
+    <section class="section-multimedia">
+        <div class="section-content">
+            <div class="grid-multimedia">
+                
+                <!-- Video Izquierdo (Facebook Reel 1) -->
+                <div class="media-box">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F27509058742089050%2F&show_text=true&width=267&t=0" width="267" height="591" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                </div>
+
+                <!-- Foto del Centro -->
+                <div class="media-box">
+                    <img src="IMAGENCENTRO.JPG" alt="Imagen Central Promocional" class="media-img-center">
+                </div>
+
+                <!-- Video Derecho (Facebook Reel 2) -->
+                <div class="media-box">
+                    <iframe src="https://www.facebook.com/plugins/video.php?height=476&href=https%3A%2F%2Fwww.facebook.com%2Freel%2F1097877328847288%2F&show_text=true&width=267&t=0" width="267" height="591" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" allowFullScreen="true"></iframe>
+                </div>
+
+            </div>
         </div>
     </section>
 
